@@ -16,7 +16,6 @@ enum TransitionStyle {
 }
 
 extension UIViewController {
-    // 제네릭 연습삼아 만들어보기
     func transition<T: UIViewController>(viewController: T, style: TransitionStyle) {
         
         switch style {

@@ -34,20 +34,19 @@ enum WeatherAPI {
      연산 프로퍼티의 값이 인스턴스의 상태에 따라 달라져야 한다면, 인스턴스 연산 프로퍼티로 선언하는 것이 좋겠다.
      */
     
-    static private let baseURL = "https://api.openweathermap.org/data/2.5/"
+    private static let baseURL = "https://api.openweathermap.org"
+    private static let baseParameters: [String: String] = ["lang": "kr", "appid": APIKey.WeatherKey]
     
     var endpoint: URL {
         switch self {
         case .WeatherData:
-            return URL(string: WeatherAPI.baseURL + "weather")!
+            return URL(string: WeatherAPI.baseURL + "/data/2.5/weather")!
         case .WeatherCityIDData:
-            return URL(string: WeatherAPI.baseURL + "weather")!
+            return URL(string: WeatherAPI.baseURL + "/data/2.5/weather")!
         case .WeatherforecastData:
-            return URL(string: WeatherAPI.baseURL + "forecast")!
+            return URL(string: WeatherAPI.baseURL + "/data/2.5/forecast")!
         }
     }
-    
-    private static let baseParameters: [String: String] = ["lang": "kr", "appid": APIKey.WeatherKey]
     
     var parameter: [String: String] {
         var params = WeatherAPI.baseParameters

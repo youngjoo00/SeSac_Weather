@@ -13,8 +13,7 @@ class HorizontalCollectionView: UICollectionView {
     
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: HorizontalCollectionView.configureCollectionViewLayout())
-        
-        configureView()
+        backgroundColor = .clear
     }
     
     required init?(coder: NSCoder) {
@@ -26,21 +25,14 @@ class HorizontalCollectionView: UICollectionView {
 
 extension HorizontalCollectionView {
     
-    func configureView() {
-        register(PosterCollectionViewCell.self, forCellWithReuseIdentifier: "HorizontalCollectionViewCell")
-        backgroundColor = .clear
-    }
-    
     static func configureCollectionViewLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewFlowLayout()
         
-        layout.itemSize = CGSize(width: UIScreen.main.bounds.width/3.5, height: 150)
-        layout.minimumLineSpacing = 10
+        layout.itemSize = CGSize(width: UIScreen.main.bounds.width/5, height: 150)
+        layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         layout.scrollDirection = .horizontal
         return layout
     }
-    
-    
 }

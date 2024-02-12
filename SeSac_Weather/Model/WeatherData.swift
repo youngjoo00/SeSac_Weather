@@ -19,6 +19,21 @@ struct WeatherData: Decodable {
         let main: String
         let description: String
         let icon: String
+        
+        enum CodingKeys: CodingKey {
+            case id
+            case main
+            case description
+            case icon
+        }
+        
+        init(from decoder: Decoder) throws {
+            let container: KeyedDecodingContainer<WeatherData.Weather.CodingKeys> = try decoder.container(keyedBy: WeatherData.Weather.CodingKeys.self)
+            self.id = try container.decode(Int.self, forKey: WeatherData.Weather.CodingKeys.id)
+            self.main = try container.decode(String.self, forKey: WeatherData.Weather.CodingKeys.main)
+            self.description = try container.decode(String.self, forKey: WeatherData.Weather.CodingKeys.description)
+            self.icon = try container.decode(String.self, forKey: WeatherData.Weather.CodingKeys.icon).updateIcon
+        }
     }
     
     struct Main: Decodable {
@@ -44,10 +59,10 @@ struct WeatherData: Decodable {
         
         init(from decoder: Decoder) throws {
             let container: KeyedDecodingContainer<WeatherData.Main.CodingKeys> = try decoder.container(keyedBy: WeatherData.Main.CodingKeys.self)
-            self.temp = try container.decode(Double.self, forKey: WeatherData.Main.CodingKeys.temp) - 273.15
-            self.feels_like = try container.decode(Double.self, forKey: WeatherData.Main.CodingKeys.feels_like) - 273.15
-            self.temp_min = try container.decode(Double.self, forKey: WeatherData.Main.CodingKeys.temp_min) - 273.15
-            self.temp_max = try container.decode(Double.self, forKey: WeatherData.Main.CodingKeys.temp_max) - 273.15
+            self.temp = try container.decode(Double.self, forKey: WeatherData.Main.CodingKeys.temp).updateTemp
+            self.feels_like = try container.decode(Double.self, forKey: WeatherData.Main.CodingKeys.feels_like).updateTemp
+            self.temp_min = try container.decode(Double.self, forKey: WeatherData.Main.CodingKeys.temp_min).updateTemp
+            self.temp_max = try container.decode(Double.self, forKey: WeatherData.Main.CodingKeys.temp_max).updateTemp
             self.pressure = try container.decode(Int.self, forKey: WeatherData.Main.CodingKeys.pressure)
             self.humidity = try container.decode(Int.self, forKey: WeatherData.Main.CodingKeys.humidity)
             self.sea_level = try container.decodeIfPresent(Int.self, forKey: WeatherData.Main.CodingKeys.sea_level)
@@ -58,7 +73,7 @@ struct WeatherData: Decodable {
     struct Wind: Decodable {
         let speed: Double
         let deg: Int
-        let gust: Double
+        let gust: Double?
     }
     
     struct Clouds: Decodable {
