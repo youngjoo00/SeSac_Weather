@@ -13,10 +13,12 @@ final class WeatherView: BaseView {
     
     let titleLabel = WhiteTitleLabel().then {
         $0.font = .boldSystemFont(ofSize: 30)
+        $0.textAlignment = .center
     }
     
     let tempLabel = WhiteTitleLabel().then {
         $0.font = .boldSystemFont(ofSize: 50)
+        $0.textAlignment = .center
     }
     let descriptionLabel = WhiteTitleLabel()
     let tempMaxMinLabel = WhiteTitleLabel()

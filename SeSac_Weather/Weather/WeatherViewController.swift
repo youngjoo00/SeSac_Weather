@@ -197,8 +197,8 @@ extension WeatherViewController: UITableViewDelegate, UITableViewDataSource {
             let url = URL(string: row.iconID)
             cell.iconImageView.kf.setImage(with: url, placeholder: UIImage(systemName: "xmark"))
             
-            cell.tempMinLabel.text = "최저 \(row.tempMax.formattedRoundTemp(format: "%.0f°"))"
-            cell.tempMaxLabel.text = "최고 \(row.tempMin.formattedRoundTemp(format: "%.0f°"))"
+            cell.tempMinLabel.text = "최저 \(row.tempMin.formattedRoundTemp(format: "%.0f°"))"
+            cell.tempMaxLabel.text = "최고 \(row.tempMax.formattedRoundTemp(format: "%.0f°"))"
             
             return cell
         case .location:
