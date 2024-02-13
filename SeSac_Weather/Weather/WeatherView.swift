@@ -24,6 +24,7 @@ final class WeatherView: BaseView {
     let tableView = UITableView().then {
         $0.backgroundColor = .clear
         $0.register(WeatherTableViewCell.self, forCellReuseIdentifier: WeatherTableViewCell.identifier)
+        $0.register(FiveDayTableViewCell.self, forCellReuseIdentifier: FiveDayTableViewCell.identifier)
         $0.register(SectionHeaderUnderLineView.self, forHeaderFooterViewReuseIdentifier: SectionHeaderUnderLineView.identifier)
         $0.rowHeight = 150
     }
@@ -71,6 +72,5 @@ final class WeatherView: BaseView {
     }
     
     override func configureView() {
-        
     }
 }

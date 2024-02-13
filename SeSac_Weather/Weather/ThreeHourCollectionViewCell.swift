@@ -34,7 +34,7 @@ final class ThreeHourCollectionViewCell: BaseCollectionViewCell {
         
         weatherImageView.snp.makeConstraints { make in
             make.top.equalTo(timeLabel.snp.bottom)
-            make.center.equalTo(contentView)
+            make.centerX.equalTo(contentView)
             make.height.equalTo(80)
         }
         

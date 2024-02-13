@@ -13,4 +13,16 @@ enum Weather: String, CaseIterable {
     case location = "위치"
     case other = "기타 정보"
     
+    var cellCount: Int {
+        switch self {
+        case .threeHour:
+            return 1
+        case .fiveDay:
+            return 5
+        case .location:
+            return 1
+        case .other:
+            return 1
+        }
+    }
 }

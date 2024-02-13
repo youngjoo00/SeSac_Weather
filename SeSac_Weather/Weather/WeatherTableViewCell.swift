@@ -15,7 +15,7 @@ final class WeatherTableViewCell: BaseTableViewCell {
     
     override func configureHierarchy() {
         [
-            horizontalCollectionView
+            horizontalCollectionView,
         ].forEach { contentView.addSubview($0) }
     }
     
@@ -23,6 +23,7 @@ final class WeatherTableViewCell: BaseTableViewCell {
         horizontalCollectionView.snp.makeConstraints { make in
             make.edges.equalTo(contentView)
         }
+        
     }
     
     override func configureView() {

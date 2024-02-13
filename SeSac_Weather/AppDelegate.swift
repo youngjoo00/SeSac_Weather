@@ -16,7 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITabBar.appearance().backgroundColor = .clear
         UITabBar.appearance().tintColor = .white
         UITabBar.appearance().unselectedItemTintColor = .systemGray2
-
         
         UITabBar.appearance().barTintColor = .black
         UINavigationBar.appearance().barTintColor = .black
