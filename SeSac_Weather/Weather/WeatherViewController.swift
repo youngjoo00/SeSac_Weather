@@ -14,7 +14,7 @@ final class WeatherViewController: BaseViewController {
     
     private var weatherData: WeatherData?
     private var weatherForecastData: WeatherForecastData?
-    private var fiveDayList: [FiveDayData] = Array(repeating: FiveDayData(day: "", iconID: "", tempMax: 0.0, tempMin: 0.0), count: 5)
+    private var fiveDayList: [FiveDayData] = Array(repeating: FiveDayData(day: "", iconID: "", tempMax: 0.0, tempMin: 0.0), count: 6)
     
     private struct FiveDayData {
         var day: String
@@ -104,7 +104,7 @@ extension WeatherViewController {
         var date = todayData.first?.day
         var index = 0
         var dataList: [[WeatherForecastData.WeatherItem]] = [[]]
-        
+
         for item in todayData {
             if date != item.day {
                 index += 1
@@ -114,6 +114,7 @@ extension WeatherViewController {
             dataList[index].append(item)
         }
         
+        print(dataList.count)
         for (i, item) in dataList.enumerated() {
             guard let tempMax = item.max(by: { $0.main.temp < $1.main.temp })?.main.temp else { return }
             guard let tempMin = item.min(by: { $0.main.temp < $1.main.temp })?.main.temp else { return }
@@ -131,9 +132,9 @@ extension WeatherViewController {
             
             guard let mostIcon = iconDic.max(by: { $0.value < $1.value })?.key else { return }
             guard let day = item.first?.day else { return }
+            print(day, mostIcon, tempMax, tempMin)
             fiveDayList[i] = FiveDayData(day: day, iconID: mostIcon, tempMax: tempMax, tempMin: tempMin)
         }
-        print(fiveDayList.count)
     }
     
     private func dateFormat(date: String) -> String {
